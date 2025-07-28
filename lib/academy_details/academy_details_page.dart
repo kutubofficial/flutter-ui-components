@@ -15,6 +15,7 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   // int _selectedCategoryIndex = 0;
+  bool _isFavorited = false;
 
   final List<ClassInfo> classList = const [
     ClassInfo(
@@ -59,7 +60,7 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
     ),
   ];
   final List<String> galleryImages = [
-    'assets/gallery1.jpg',
+    'assets/gallery1.mp4',
     'assets/gallery2.jpg',
     'assets/gallery3.jpg',
     'assets/gallery4.jpg',
@@ -124,8 +125,15 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
             ),
             actions: [
               IconButton(
-                icon: const Icon(Icons.favorite_border, color: Colors.white),
-                onPressed: () {},
+                icon: Icon(
+                  _isFavorited ? Icons.favorite : Icons.favorite_border,
+                  color: _isFavorited ? Colors.red : Colors.white,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isFavorited = !_isFavorited;
+                  });
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.notifications_none, color: Colors.white),
@@ -168,7 +176,7 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
                     children: [
                       Icon(
                         Icons.location_on,
-                        color: Colors.grey[400],
+                        color: const Color.fromARGB(255, 245, 221, 11),
                         size: 16,
                       ),
                       const SizedBox(width: 4),
@@ -182,14 +190,18 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
               ),
             ),
           ),
+
           SliverPersistentHeader(
             delegate: _SliverAppBarDelegate(
               TabBar(
                 controller: _tabController,
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
                 labelColor: Colors.yellow[700],
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: Colors.yellow[700],
                 indicatorSize: TabBarIndicatorSize.label,
+                labelPadding: const EdgeInsets.symmetric(horizontal: 16.0),
                 tabs: const [
                   Tab(text: 'About'),
                   Tab(text: 'Services'),

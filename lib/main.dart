@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/testpage.dart';
 import 'authentication/loginpage.dart';
 import 'academy_details/academy_details_page.dart';
 
