@@ -2,46 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'photo_viewer_page.dart';
 
-class GalleryTab extends StatefulWidget {
-  const GalleryTab({super.key});
+class GalleryTab extends StatelessWidget {
+  final List<String> galleryImages;
 
-  @override
-  State<GalleryTab> createState() => _GalleryTabState();
-}
-
-class _GalleryTabState extends State<GalleryTab> {
-  final List<String> galleryImages = [
-    'assets/gallery2.jpg',
-    'assets/gallery3.jpg',
-    'assets/gallery4.jpg',
-    'assets/gallery5.jpg',
-    'assets/gallery6.jpg',
-    'assets/gallery3.jpg',
-    'assets/gallery7.jpg',
-    'assets/gallery8.jpg',
-    'assets/gallery3.jpg',
-    'assets/gallery4.jpg',
-    'assets/gallery5.jpg',
-    'assets/gallery6.jpg',
-    'assets/gallery7.jpg',
-    'assets/gallery8.jpg',
-    'assets/gallery3.jpg',
-    'assets/gallery9.jpg',
-    'assets/gallery10.jpg',
-    'assets/gallery11.jpg',
-  ];
+  const GalleryTab({super.key, required this.galleryImages});
 
   @override
   Widget build(BuildContext context) {
-    return _buildGalleryTab();
-  }
-
-  Widget _buildGalleryTab() {
     return MasonryGridView.count(
       padding: const EdgeInsets.all(12.0),
-      crossAxisCount: 2,
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
+      crossAxisCount: 3,
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
       itemCount: galleryImages.length,
       itemBuilder: (context, index) {
         return GestureDetector(

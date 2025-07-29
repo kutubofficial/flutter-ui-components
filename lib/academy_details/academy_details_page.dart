@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/academy_details/about_tab.dart';
-import 'package:flutter_application_2/academy_details/gallery_tab.dart';
-import 'package:flutter_application_2/academy_details/ratings_tab.dart';
-import 'package:flutter_application_2/academy_details/services_tab.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'class_card.dart';
 import 'class_model.dart';
-import 'filter_sheet.dart';
-import 'photo_viewer_page.dart';
 import 'review_model.dart';
+
 import 'about_tab.dart';
-import 'services_tab.dart';
-import 'ratings_tab.dart';
 import 'gallery_tab.dart';
+import 'ratings_tab.dart';
+import 'services_tab.dart';
 
 class AcademyDetailsPage extends StatefulWidget {
   const AcademyDetailsPage({super.key});
@@ -24,7 +17,6 @@ class AcademyDetailsPage extends StatefulWidget {
 class _AcademyDetailsPageState extends State<AcademyDetailsPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  // int _selectedCategoryIndex = 0;
   bool _isFavorited = false;
 
   final List<ClassInfo> classList = const [
@@ -64,24 +56,53 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
         discount: '24% OFF',
         tag: 'In Studio',
         bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'CLASSICAL',
-        title: 'Bharatanatyam',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'At Your Place',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'BOLLYWOOD',
-        title: 'Wedding & Events Choreography',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'In Studio',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
+  ];
+  final List<String> galleryImages = [
+    'assets/gallery7.jpg',
+    'assets/gallery2.jpg',
+    'assets/gallery3.jpg',
+    'assets/gallery4.jpg',
+    'assets/gallery5.jpg',
+    'assets/gallery6.jpg',
+    'assets/gallery7.jpg',
+    'assets/gallery8.jpg',
+    'assets/gallery9.jpg',
+    'assets/gallery10.jpg',
+    'assets/gallery11.jpg',
+    'assets/gallery3.jpg',
+    'assets/gallery4.jpg',
+    'assets/gallery5.jpg',
+    'assets/gallery6.jpg',
+    'assets/gallery7.jpg',
+  ];
+  final List<ReviewInfo> reviews = const [
+    ReviewInfo(
+        profileImageUrl: 'assets/profile.png',
+        name: 'Shane Watson',
+        date: '1 day ago',
+        rating: 5.0,
+        comment:
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+    ReviewInfo(
+        profileImageUrl: 'assets/profile.png',
+        name: 'Steve Smith',
+        date: '2 days ago',
+        rating: 4.0,
+        comment:
+            'A great place to learn and grow! Highly recommended. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
+    ReviewInfo(
+        profileImageUrl: 'assets/profile.png',
+        name: 'Steve Smith',
+        date: '2 days ago',
+        rating: 4.0,
+        comment: 'A great place to learn and grow! Highly recommended.'),
+    ReviewInfo(
+        profileImageUrl: 'assets/profile.png',
+        name: 'Steve Smith',
+        date: '2 days ago',
+        rating: 4.0,
+        comment:
+            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
   ];
 
   @override
@@ -148,7 +169,7 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
                       children: [
                         const Icon(Icons.star, color: Colors.yellow, size: 16),
                         const SizedBox(width: 4),
-                        Text('4 (${classList.length * 1891} reviews)'),
+                        Text('4 (${reviews.length} reviews)'),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -201,9 +222,9 @@ class _AcademyDetailsPageState extends State<AcademyDetailsPage>
           controller: _tabController,
           children: [
             const AboutTab(),
-            const ServicesTab(),
-            const GalleryTab(),
-            const RatingsTab()
+            ServicesTab(classList: classList),
+            GalleryTab(galleryImages: galleryImages),
+            RatingsTab(reviews: reviews),
           ],
         ),
       ),

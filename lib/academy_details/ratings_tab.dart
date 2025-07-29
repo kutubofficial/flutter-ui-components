@@ -1,58 +1,16 @@
 import 'package:flutter/material.dart';
 import 'review_model.dart';
 
-class RatingsTab extends StatefulWidget {
-  const RatingsTab({super.key});
+class RatingsTab extends StatelessWidget {
+  final List<ReviewInfo> reviews;
 
-  @override
-  State<RatingsTab> createState() => _RatingsTabState();
-}
-
-class _RatingsTabState extends State<RatingsTab> {
-  final List<ReviewInfo> reviews = const [
-    ReviewInfo(
-        profileImageUrl: 'assets/profile.png',
-        name: 'Steve Smith',
-        date: '2 days ago',
-        rating: 4.0,
-        comment:
-            'A great place to learn and grow! Highly recommended. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    ReviewInfo(
-        profileImageUrl: 'assets/profile.png',
-        name: 'Shane Watson',
-        date: '1 day ago',
-        rating: 5.0,
-        comment:
-            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    ReviewInfo(
-        profileImageUrl: 'assets/profile.png',
-        name: 'Steve Smith',
-        date: '2 days ago',
-        rating: 4.0,
-        comment:
-            'A great place to learn and grow! Highly recommended. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    ReviewInfo(
-        profileImageUrl: 'assets/profile.png',
-        name: 'Steve Smith',
-        date: '3 days ago',
-        rating: 4.0,
-        comment:
-            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-    ReviewInfo(
-        profileImageUrl: 'assets/profile.png',
-        name: 'Steve Smith',
-        date: '2 days ago',
-        rating: 4.0,
-        comment:
-            'A great place to learn and grow! Highly recommended. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'),
-  ];
+  const RatingsTab({
+    super.key,
+    required this.reviews,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return _buildRatingsTab();
-  }
-
-  Widget _buildRatingsTab() {
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
@@ -61,7 +19,8 @@ class _RatingsTabState extends State<RatingsTab> {
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
-        Text('420 Reviews', style: TextStyle(color: Colors.grey[400])),
+        Text('${reviews.length * 140} Reviews',
+            style: TextStyle(color: Colors.grey[400])),
         const SizedBox(height: 16),
         _buildRatingBar('5 Star', 0.9),
         _buildRatingBar('4 Star', 0.05),

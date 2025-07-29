@@ -4,7 +4,12 @@ import 'class_model.dart';
 import 'filter_sheet.dart';
 
 class ServicesTab extends StatefulWidget {
-  const ServicesTab({super.key});
+  final List<ClassInfo> classList;
+
+  const ServicesTab({
+    super.key,
+    required this.classList,
+  });
 
   @override
   State<ServicesTab> createState() => _ServicesTabState();
@@ -12,63 +17,6 @@ class ServicesTab extends StatefulWidget {
 
 class _ServicesTabState extends State<ServicesTab> {
   int _selectedCategoryIndex = 0;
-
-  final List<ClassInfo> classList = const [
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'BOLLYWOOD',
-        title: 'Kathak Classes',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'In Studio',
-        bottomText: 'Flexible Sessions'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'BOLLYWOOD',
-        title: 'ALL DANCESTYLE',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'Online',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'CLASSICAL',
-        title: 'Bharatanatyam',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'At Your Place',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'BOLLYWOOD',
-        title: 'Wedding & Events Choreography',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'In Studio',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'CLASSICAL',
-        title: 'Bharatanatyam',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'At Your Place',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-    ClassInfo(
-        imageUrl: 'assets/dancestyle.png',
-        category: 'BOLLYWOOD',
-        title: 'Wedding & Events Choreography',
-        price: 'AED 456',
-        originalPrice: 'AED 587',
-        discount: '24% OFF',
-        tag: 'In Studio',
-        bottomText: 'Next Batch Starts From 15 May, 2025'),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +31,7 @@ class _ServicesTabState extends State<ServicesTab> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-                'Classes(${_selectedCategoryIndex == 0 ? classList.length : 0})',
+                'Classes(${_selectedCategoryIndex == 0 ? widget.classList.length : 0})',
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -141,7 +89,7 @@ class _ServicesTabState extends State<ServicesTab> {
         const SizedBox(height: 24),
         if (_selectedCategoryIndex == 0)
           Column(
-            children: classList.map((classInfo) {
+            children: widget.classList.map((classInfo) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: ClassCard(
